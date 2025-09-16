@@ -16,7 +16,7 @@ double nanos(void) {
 
 float prob_unique_birthday(int n_people, int n_simulations){
 	int count_unique = 0;
-	int birthdays[365];
+	bool birthdays[365];
   for (int i = 0; i < n_simulations;i++) {
 		// simluate a group of n_people
 		bool duplicate_found = false;
