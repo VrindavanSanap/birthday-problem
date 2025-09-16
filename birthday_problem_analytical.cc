@@ -2,15 +2,17 @@
 #include <cstdio>   // For fputs, stderr
 #include <ctime>    // For timespec, timespec_get, TIME_UTC
 #include <iomanip>  // For std::fixed and std::setprecision
-          //
+
+using namespace std;
+      //
 double nanos(void)
 {
   struct timespec ts;
   // timespec_get requires C++17 or later
   if (timespec_get(&ts, TIME_UTC) != TIME_UTC)
   {
-    fputs("timespec_get failed!", stderr);
-    return 0;
+  fputs("timespec_get failed!", stderr);
+  return 0;
   }
   // Convert seconds to nanoseconds and add the nanoseconds part
   return 1000000000.0 * ts.tv_sec + ts.tv_nsec;
@@ -32,23 +34,24 @@ int main(){
  double start = nanos(); 
   for (int i = 5; i<=90; i+=5){
   float res = 1 - prob_unique_birthday(i);
-  std::cout << i << " " << std::fixed << std::setprecision(5) << res << std::endl;
+  cout << i << " " << fixed << setprecision(5) << res << endl;
   }
   double end = nanos();
   // time taken in seconds
   double time_taken = (end - start) / 1e9;
-  std::cout << "Time taken by program is : " << std::fixed << std::setprecision(9) << time_taken << " sec" << std::endl;
+  cout << "Time taken by program is : " << fixed << setprecision(9) << time_taken << " sec" << endl;
 
   
   start = nanos();
   for (int i = 21; i<25; i+=1){
   float res = 1 - prob_unique_birthday(i);
-  std::cout << i << " " << std::fixed << std::setprecision(5) << res << std::endl;
+  cout << i << " " << fixed << setprecision(5) << res << endl;
   }
   end = nanos();
   // time taken in seconds
   time_taken = (end - start) / 1e9;
-  std::cout << "Time taken by program is : " << std::fixed << std::setprecision(9) << time_taken << " sec" << std::endl;
+  cout << "Time taken by program is : " << fixed << setprecision(9) << time_taken << " sec" << endl;
 
   return 0;
 }
+
