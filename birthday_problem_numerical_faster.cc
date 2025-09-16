@@ -14,27 +14,30 @@ double nanos(void) {
   return 1000000000.0 * ts.tv_sec + ts.tv_nsec;
 }
 
-float prob_unique_birthday(int n_people, int num_simulations){
+float prob_unique_birthday(int n_people, int n_simulations){
 	int count_unique = 0;
-	int birthdays[n_people];
-  for (int i = 0; i < num_simulations;i++) {
+	int birthdays[365];
+  for (int i = 0; i < n_simulations;i++) {
 		// simluate a group of n_people
-		bool unique = true;
+		bool duplicate_found = false;
+		memset(birthdays, 0, sizeof(birthdays)); // reset birthdays array
 		for(int i = 0;i<n_people;i++){
-			birthdays[i] = rand() % 365;
 			// check if birthday is unique
-			for(int j =0;j<i;j++){
-				if(birthdays[i] == birthdays[j]){
-					unique = false;
-					break;
-				}
+			int bday = rand() % 365;
+			if(birthdays[bday] == 1){
+				duplicate_found = true;
+				break;
+
+			}else{
+				birthdays[bday] = 1;
 			}
-			if(!unique) break;
+			if(duplicate_found) break;
 
 		}
-		if(unique) count_unique++;
-  }
-	float res = (float)count_unique / (float)num_simulations;
+
+			if(!duplicate_found) count_unique++;
+	}
+	float res = (float)count_unique / (float)n_simulations;
 	return res;
 }
 int main(){

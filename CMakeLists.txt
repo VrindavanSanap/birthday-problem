@@ -9,3 +9,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_executable(birthday_problem_analytical birthday_problem_analytical.cc)
 
 add_executable(birthday_problem_numerical birthday_problem_numerical.cc)
+
+add_executable(birthday_problem_numerical_faster birthday_problem_numerical_faster.cc)
